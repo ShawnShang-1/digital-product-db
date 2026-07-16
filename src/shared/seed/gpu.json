@@ -1,5 +1,59 @@
 [
   {
+    "brand": "Apple",
+    "model": "M5 Max 40核GPU",
+    "generation": "M5",
+    "arch_code": "Apple M5 GPU",
+    "release_year": 2026,
+    "launch_price": null,
+    "cuda_cores": null,
+    "process": "TSMC N3P (3nm)",
+    "base_clock": null,
+    "boost_clock": null,
+    "vram": null,
+    "vram_type": "统一内存 (LPDDR5x)",
+    "vram_width": 1024,
+    "vram_clock": null,
+    "fp32": null,
+    "tdp": null,
+    "bus_interface": "Apple SoC 内部总线",
+    "power_connector": null,
+    "timespy": null,
+    "timespy_extreme": null,
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": "第三代光线追踪引擎，每GPU核心内置独立神经网络加速器",
+    "ai_tops": null,
+    "ai_notes": "每GPU核心内置神经网络加速器，GPU AI性能比M4 Max提升最高4倍。统一内存最高128GB, 带宽614GB/s"
+  },
+  {
+    "brand": "Apple",
+    "model": "M5 Pro 20核GPU",
+    "generation": "M5",
+    "arch_code": "Apple M5 GPU",
+    "release_year": 2026,
+    "launch_price": null,
+    "cuda_cores": null,
+    "process": "TSMC N3P (3nm)",
+    "base_clock": null,
+    "boost_clock": null,
+    "vram": null,
+    "vram_type": "统一内存 (LPDDR5x)",
+    "vram_width": 512,
+    "vram_clock": null,
+    "fp32": null,
+    "tdp": null,
+    "bus_interface": "Apple SoC 内部总线",
+    "power_connector": null,
+    "timespy": null,
+    "timespy_extreme": null,
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": "第三代光线追踪引擎，每GPU核心内置独立神经网络加速器",
+    "ai_tops": null,
+    "ai_notes": "每GPU核心内置神经网络加速器，GPU峰值计算性能是M4 Pro的4倍。统一内存最高64GB, 带宽307GB/s"
+  },
+  {
     "brand": "NVIDIA",
     "model": "GeForce RTX 5090",
     "generation": "RTX 50",
@@ -20,7 +74,11 @@
     "power_connector": "1x 16-pin (12V-2x6)",
     "timespy": 46923,
     "timespy_extreme": 25766,
-    "snl_graphics": 14614
+    "snl_graphics": 14614,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -43,7 +101,11 @@
     "power_connector": "1x 16-pin (12V-2x6)",
     "timespy": 32995,
     "timespy_extreme": 16578,
-    "snl_graphics": 9320
+    "snl_graphics": 9320,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -66,7 +128,11 @@
     "power_connector": "1x 16-pin (12V-2x6)",
     "timespy": 27821,
     "timespy_extreme": 13623,
-    "snl_graphics": 7859
+    "snl_graphics": 7859,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -89,7 +155,11 @@
     "power_connector": "1x 16-pin (12V-2x6)",
     "timespy": 22683,
     "timespy_extreme": 10785,
-    "snl_graphics": 5944
+    "snl_graphics": 5944,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -112,7 +182,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 15883,
     "timespy_extreme": 7371,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -135,7 +209,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 13731,
     "timespy_extreme": 6429,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -158,7 +236,11 @@
     "power_connector": null,
     "timespy": 25023,
     "timespy_extreme": 12179,
-    "snl_graphics": 6345
+    "snl_graphics": 6345,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -181,7 +263,11 @@
     "power_connector": null,
     "timespy": 22025,
     "timespy_extreme": 10655,
-    "snl_graphics": 5722
+    "snl_graphics": 5722,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -204,7 +290,11 @@
     "power_connector": null,
     "timespy": 17384,
     "timespy_extreme": 8303,
-    "snl_graphics": 4408
+    "snl_graphics": 4408,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -227,7 +317,11 @@
     "power_connector": null,
     "timespy": 13576,
     "timespy_extreme": 6286,
-    "snl_graphics": 3402
+    "snl_graphics": 3402,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -250,7 +344,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 30445,
     "timespy_extreme": 14633,
-    "snl_graphics": 6403
+    "snl_graphics": 6403,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -273,7 +371,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 26876,
     "timespy_extreme": 13072,
-    "snl_graphics": 5844
+    "snl_graphics": 5844,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Intel",
@@ -296,7 +398,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 12600,
     "timespy_extreme": 6004,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -319,7 +425,11 @@
     "power_connector": "1x 16-pin (12VHPWR)",
     "timespy": 28304,
     "timespy_extreme": 14052,
-    "snl_graphics": 7450
+    "snl_graphics": 7450,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -342,7 +452,11 @@
     "power_connector": "1x 16-pin (12VHPWR)",
     "timespy": 24314,
     "timespy_extreme": 11874,
-    "snl_graphics": 6396
+    "snl_graphics": 6396,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -365,7 +479,11 @@
     "power_connector": "1x 16-pin (12VHPWR)",
     "timespy": 21035,
     "timespy_extreme": 9967,
-    "snl_graphics": 5241
+    "snl_graphics": 5241,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -388,7 +506,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 11241,
     "timespy_extreme": 5289,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Apple",
@@ -411,7 +533,11 @@
     "power_connector": null,
     "timespy": null,
     "timespy_extreme": null,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Intel",
@@ -434,7 +560,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 14701,
     "timespy_extreme": 7068,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -457,7 +587,11 @@
     "power_connector": "1x 16-pin (12VHPWR)",
     "timespy": 22771,
     "timespy_extreme": 10894,
-    "snl_graphics": 5508
+    "snl_graphics": 5508,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -480,7 +614,11 @@
     "power_connector": "1x 16-pin (12VHPWR)",
     "timespy": 17887,
     "timespy_extreme": 7907,
-    "snl_graphics": 5508
+    "snl_graphics": 5508,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -503,7 +641,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 13473,
     "timespy_extreme": 6172,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -526,7 +668,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 13484,
     "timespy_extreme": 6172,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -549,7 +695,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 10619,
     "timespy_extreme": 4955,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -572,7 +722,11 @@
     "power_connector": null,
     "timespy": 21498,
     "timespy_extreme": 10528,
-    "snl_graphics": 5604
+    "snl_graphics": 5604,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -595,7 +749,11 @@
     "power_connector": null,
     "timespy": 18875,
     "timespy_extreme": 9051,
-    "snl_graphics": 4728
+    "snl_graphics": 4728,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -618,7 +776,11 @@
     "power_connector": null,
     "timespy": 12517,
     "timespy_extreme": 5699,
-    "snl_graphics": 2945
+    "snl_graphics": 2945,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -641,7 +803,11 @@
     "power_connector": null,
     "timespy": 10402,
     "timespy_extreme": 4866,
-    "snl_graphics": 2591
+    "snl_graphics": 2591,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -664,7 +830,11 @@
     "power_connector": null,
     "timespy": 8223,
     "timespy_extreme": null,
-    "snl_graphics": 1893
+    "snl_graphics": 1893,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -687,7 +857,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 22476,
     "timespy_extreme": 10591,
-    "snl_graphics": 4417
+    "snl_graphics": 4417,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -710,7 +884,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 20086,
     "timespy_extreme": 9448,
-    "snl_graphics": 3978
+    "snl_graphics": 3978,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -733,7 +911,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 17075,
     "timespy_extreme": 7853,
-    "snl_graphics": 3181
+    "snl_graphics": 3181,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -756,7 +938,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 10990,
     "timespy_extreme": 5219,
-    "snl_graphics": 1950
+    "snl_graphics": 1950,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Apple",
@@ -779,7 +965,11 @@
     "power_connector": null,
     "timespy": null,
     "timespy_extreme": null,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Apple",
@@ -802,7 +992,11 @@
     "power_connector": null,
     "timespy": null,
     "timespy_extreme": null,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Apple",
@@ -825,7 +1019,11 @@
     "power_connector": null,
     "timespy": null,
     "timespy_extreme": null,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -848,7 +1046,11 @@
     "power_connector": "1x 16-pin (12VHPWR)",
     "timespy": 36328,
     "timespy_extreme": 19460,
-    "snl_graphics": 10074
+    "snl_graphics": 10074,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -871,7 +1073,11 @@
     "power_connector": "1x 16-pin (12VHPWR)",
     "timespy": 28173,
     "timespy_extreme": 14002,
-    "snl_graphics": 7254
+    "snl_graphics": 7254,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -894,7 +1100,11 @@
     "power_connector": "1x 16-pin (12VHPWR)",
     "timespy": 21832,
     "timespy_extreme": 11318,
-    "snl_graphics": 5903
+    "snl_graphics": 5903,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -917,7 +1127,11 @@
     "power_connector": "1x 12-pin",
     "timespy": 18647,
     "timespy_extreme": 9411,
-    "snl_graphics": 5089
+    "snl_graphics": 5089,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -940,7 +1154,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 6300,
     "timespy_extreme": null,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -963,7 +1181,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 30512,
     "timespy_extreme": 15278,
-    "snl_graphics": 6363
+    "snl_graphics": 6363,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -986,7 +1208,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 26829,
     "timespy_extreme": 13130,
-    "snl_graphics": 5364
+    "snl_graphics": 5364,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -1009,7 +1235,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 21537,
     "timespy_extreme": 10545,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -1032,7 +1262,11 @@
     "power_connector": "1x 6-pin",
     "timespy": 5162,
     "timespy_extreme": null,
-    "snl_graphics": 180
+    "snl_graphics": 180,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Apple",
@@ -1055,7 +1289,11 @@
     "power_connector": null,
     "timespy": null,
     "timespy_extreme": null,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Intel",
@@ -1078,7 +1316,11 @@
     "power_connector": "1x 8-pin + 1x 6-pin",
     "timespy": 13560,
     "timespy_extreme": 6525,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Intel",
@@ -1101,7 +1343,11 @@
     "power_connector": "1x 8-pin + 1x 6-pin",
     "timespy": 12453,
     "timespy_extreme": 6033,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -1124,7 +1370,11 @@
     "power_connector": "1x 12-pin",
     "timespy": 19629,
     "timespy_extreme": 10032,
-    "snl_graphics": 5330
+    "snl_graphics": 5330,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -1147,7 +1397,11 @@
     "power_connector": "1x 12-pin",
     "timespy": 14872,
     "timespy_extreme": 7416,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -1170,7 +1424,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 8747,
     "timespy_extreme": 4097,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -1193,7 +1451,11 @@
     "power_connector": "1x 8-pin + 1x 6-pin",
     "timespy": 12804,
     "timespy_extreme": 5957,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -1216,7 +1478,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 9656,
     "timespy_extreme": 4399,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -1239,7 +1505,11 @@
     "power_connector": "1x 8-pin",
     "timespy": 8115,
     "timespy_extreme": null,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "Apple",
@@ -1262,7 +1532,11 @@
     "power_connector": null,
     "timespy": null,
     "timespy_extreme": null,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -1285,7 +1559,11 @@
     "power_connector": "1x 12-pin",
     "timespy": 19893,
     "timespy_extreme": 10258,
-    "snl_graphics": 5383
+    "snl_graphics": 5383,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -1308,7 +1586,11 @@
     "power_connector": "1x 12-pin",
     "timespy": 17662,
     "timespy_extreme": 8879,
-    "snl_graphics": 4633
+    "snl_graphics": 4633,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -1331,7 +1613,11 @@
     "power_connector": "1x 12-pin",
     "timespy": 13641,
     "timespy_extreme": 6762,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "NVIDIA",
@@ -1354,7 +1640,11 @@
     "power_connector": "1x 12-pin",
     "timespy": 11709,
     "timespy_extreme": 5710,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -1377,7 +1667,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 20764,
     "timespy_extreme": 10076,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -1400,7 +1694,11 @@
     "power_connector": "2x 8-pin",
     "timespy": 19329,
     "timespy_extreme": 9315,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   },
   {
     "brand": "AMD",
@@ -1423,6 +1721,10 @@
     "power_connector": "2x 8-pin",
     "timespy": 16182,
     "timespy_extreme": 7771,
-    "snl_graphics": null
+    "snl_graphics": null,
+    "port_royal": null,
+    "rt_notes": null,
+    "ai_tops": null,
+    "ai_notes": null
   }
 ]

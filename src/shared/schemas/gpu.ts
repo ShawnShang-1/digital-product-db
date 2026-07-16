@@ -21,7 +21,9 @@ export const gpuSchema: CategorySchema = {
     { id: 'vram', label: '显存', icon: '<rect width="18" height="11" x="3" y="8" rx="2"/><path d="M7 8V4M11 8V4M15 8V4M19 8V4"/>' },
     { id: 'compute', label: '算力', icon: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>' },
     { id: 'power', label: '功耗与接口', icon: '<path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" x2="12" y1="2" y2="12"/>' },
-    { id: 'perf', label: '性能跑分', icon: '<path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>' }
+    { id: 'perf', label: '理论性能', icon: '<path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>' },
+    { id: 'rt', label: '光追性能', icon: '<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/><circle cx="12" cy="12" r="4"/>' },
+    { id: 'ai', label: 'AI 推理', icon: '<path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2v10h10A10 10 0 0 0 12 2z"/>' }
   ],
   fields: [
     { key: 'brand', label: '品牌', type: 'select', group: 'basic', options: ['NVIDIA', 'AMD', 'Intel', '其他'], filterable: true, listColumn: true, listWidth: 90, compare: 'text' },
@@ -44,7 +46,11 @@ export const gpuSchema: CategorySchema = {
     { key: 'power_connector', label: '供电接口', type: 'text', group: 'power', mono: true, placeholder: '如 1x 16-pin / 3x 8-pin' },
     { key: 'timespy', label: '3DMark Time Spy', type: 'number', group: 'perf', sortable: true, mono: true, highlight: true, listColumn: true, listWidth: 120, listLabel: 'Time Spy', compare: 'higher-better' },
     { key: 'timespy_extreme', label: 'Time Spy Extreme', type: 'number', group: 'perf', sortable: true, mono: true, listColumn: true, listWidth: 130, listLabel: 'TS Extreme', compare: 'higher-better' },
-    { key: 'snl_graphics', label: 'SNL 跑分 (图形分)', type: 'number', group: 'perf', sortable: true, mono: true, listLabel: 'SNL 图形', compare: 'higher-better' }
+    { key: 'snl_graphics', label: 'Speed Way 跑分', type: 'number', group: 'perf', sortable: true, mono: true, listLabel: 'Speed Way', compare: 'higher-better' },
+    { key: 'port_royal', label: 'Port Royal (光追)', type: 'number', group: 'rt', sortable: true, mono: true, highlight: true, listColumn: true, listWidth: 130, listLabel: 'Port Royal', compare: 'higher-better' },
+    { key: 'rt_notes', label: '光追技术', type: 'text', group: 'rt', placeholder: '如 RT Core 数量、DXR 特性等' },
+    { key: 'ai_tops', label: 'AI 算力 (INT8)', type: 'text', group: 'ai', unit: 'TOPS', sortable: true, mono: true, highlight: true, listColumn: true, listWidth: 120, listLabel: 'AI TOPS', compare: 'higher-better' },
+    { key: 'ai_notes', label: 'AI 技术', type: 'text', group: 'ai', placeholder: '如 Tensor Core 数量、DLSS 版本等' }
   ],
   filters: ['brand', 'generation', 'vram_type']
 };
