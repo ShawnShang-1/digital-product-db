@@ -44,6 +44,14 @@ if (!app.isPackaged) {
 }
 
 function createWindow(): void {
+  const iconPath = join(
+    __dirname,
+    '..',
+    '..',
+    'assets',
+    'icons',
+    'app.icns'
+  );
   mainWindow = new BrowserWindow({
     width: 1440,
     height: 900,
@@ -56,6 +64,7 @@ function createWindow(): void {
     backgroundColor: '#ffffff',
     vibrancy: 'under-window',
     visualEffectState: 'active',
+    icon: iconPath,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,

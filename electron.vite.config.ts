@@ -22,5 +22,6 @@ export default defineConfig({
       }
     },
     plugins: [react()]
-  }
+  },
+  assetsInclude: ['assets/icons/**']
 })
