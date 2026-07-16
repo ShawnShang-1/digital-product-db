@@ -10,7 +10,9 @@
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "rebuild": "electron-rebuild -f -w better-sqlite3",
-    "start": "electron-vite preview"
+    "start": "electron-vite preview",
+    "dist": "electron-vite build && electron-builder",
+    "dist:dir": "electron-vite build && electron-builder --dir"
   },
   "dependencies": {
     "better-sqlite3": "^11.8.1"
@@ -23,10 +25,41 @@
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
     "electron-vite": "^2.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "typescript": "^5.7.3",
     "vite": "^5.4.11"
+  },
+  "build": {
+    "appId": "com.shawnshang.digitalproductdb",
+    "productName": "数码产品数据库",
+    "copyright": "Copyright © 2026 Shawn Shang",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "assets/icons/app.icns",
+      "target": [
+        {
+          "target": "dir",
+          "arch": ["arm64"]
+        }
+      ],
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "identity": null,
+      "extendInfo": {
+        "NSHighResolutionCapable": true,
+        "CFBundleName": "数码产品数据库"
+      }
+    }
   }
 }

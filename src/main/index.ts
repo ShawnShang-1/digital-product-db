@@ -44,14 +44,11 @@ if (!app.isPackaged) {
 }
 
 function createWindow(): void {
-  const iconPath = join(
-    __dirname,
-    '..',
-    '..',
-    'assets',
-    'icons',
-    'app.icns'
-  );
+  // 图标路径：dev 模式从项目根目录，打包后从 resourcesPath
+  const iconPath = app.isPackaged
+    ? join(process.resourcesPath, 'assets', 'icons', 'app.icns')
+    : join(__dirname, '..', '..', 'assets', 'icons', 'app.icns');
+
   mainWindow = new BrowserWindow({
     width: 1440,
     height: 900,
@@ -73,9 +70,17 @@ function createWindow(): void {
     }
   });
 
-  mainWindow.on('ready-to-show', () => {
+  // 窗口显示保险：即使 ready-to-show 未触发，1.5s 后强制显示
+  mainWindow.once('ready-to-show', () => {
     mainWindow?.show();
+    mainWindow?.focus();
   });
+  setTimeout(() => {
+    if (mainWindow && !mainWindow.isVisible()) {
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  }, 1500);
 
   // 开发环境加载 dev server，生产环境加载打包文件
   const isDev = !app.isPackaged;

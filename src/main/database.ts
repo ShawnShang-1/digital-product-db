@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 import { app } from 'electron';
-import { existsSync, mkdirSync, writeFileSync, unlinkSync } from 'fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync, unlinkSync, statSync } from 'fs';
 import { homedir } from 'os';
 import { join } from 'path';
 import { schemas } from '../shared/schemas';
@@ -62,8 +62,15 @@ export function initDatabase(): void {
     try {
       console.log('[db] trying dir:', c);
       if (!existsSync(c)) mkdirSync(c, { recursive: true });
-      // 探测可写（writeFileSync 而非 mkdir+rm，规避沙箱对 rmdir 的拦截）
+      // 探测可写：清理历史 .probe 残留（可能是目录或文件），再写入测试文件
       const probe = join(c, '.probe');
+      if (existsSync(probe)) {
+        try {
+          const st = statSync(probe);
+          if (st.isDirectory()) rmSync(probe, { recursive: true, force: true });
+          else unlinkSync(probe);
+        } catch { /* ignore */ }
+      }
       writeFileSync(probe, 'ok');
       try { unlinkSync(probe); } catch { /* ignore */ }
       dataDir = c;

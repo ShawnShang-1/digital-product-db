@@ -8,3 +8,9 @@ src-tauri/target
 
 # 本地运行时数据（dev 模式数据库、缓存）
 .data
+
+# Electron 打包输出
+release
+
+# 上传临时目录
+.uploads
