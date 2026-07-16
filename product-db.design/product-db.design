@@ -1,0 +1,182 @@
+{
+  "data": [
+    {
+      "id": "page-cpu-list",
+      "title": "CPU 列表浏览",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752662400000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/cpu-list.html",
+        "interactions": [
+          {
+            "domId": "link-product-detail",
+            "targetPageId": "page-product-detail",
+            "transitionLabel": "查看详情"
+          },
+          {
+            "domId": "cta-comparison",
+            "targetPageId": "page-comparison",
+            "transitionLabel": "进入对比"
+          },
+          {
+            "domId": "cta-add",
+            "targetPageId": "page-add-edit",
+            "hideEdge": true,
+            "transitionLabel": "新增产品"
+          },
+          {
+            "domId": "cta-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-product-detail",
+      "title": "产品详情",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752662400000,
+      "canvasData": {
+        "x": 620,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/product-detail.html",
+        "interactions": [
+          {
+            "domId": "cta-edit",
+            "targetPageId": "page-add-edit",
+            "transitionLabel": "编辑产品"
+          },
+          {
+            "domId": "cta-comparison",
+            "targetPageId": "page-comparison",
+            "hideEdge": true,
+            "transitionLabel": "加入对比"
+          },
+          {
+            "domId": "back-list",
+            "targetPageId": "page-cpu-list",
+            "hideEdge": true,
+            "transitionLabel": "返回列表"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-comparison",
+      "title": "产品对比",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752662400000,
+      "canvasData": {
+        "x": 620,
+        "y": 377,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/comparison.html",
+        "interactions": [
+          {
+            "domId": "back-list",
+            "targetPageId": "page-cpu-list",
+            "hideEdge": true,
+            "transitionLabel": "退出对比"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-search-results",
+      "title": "搜索结果",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752662400000,
+      "canvasData": {
+        "x": 0,
+        "y": 377,
+        "group": 1
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/search-results.html",
+        "interactions": [
+          {
+            "domId": "link-product-detail",
+            "targetPageId": "page-product-detail",
+            "transitionLabel": "查看详情"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-add-edit",
+      "title": "新增/编辑",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752662400000,
+      "canvasData": {
+        "x": 1240,
+        "y": 0,
+        "group": 1
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/add-edit.html",
+        "interactions": [
+          {
+            "domId": "back-detail",
+            "targetPageId": "page-product-detail",
+            "hideEdge": true,
+            "transitionLabel": "取消编辑"
+          },
+          {
+            "domId": "back-detail-save",
+            "targetPageId": "page-product-detail",
+            "hideEdge": true,
+            "transitionLabel": "保存返回"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-dark-mode",
+      "title": "深色模式",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752662400000,
+      "canvasData": {
+        "x": 0,
+        "y": 754,
+        "group": 1
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dark-mode.html",
+        "interactions": []
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "desktop",
+    "projectName": "数码产品数据库",
+    "designLibrary": {
+      "name": "苹果",
+      "id": "dl_builtin_apple",
+      "version": null,
+      "scope": "built-in-global",
+      "path": "/Users/shawnshang/.trae-cn/design_libraries/dl_builtin_apple",
+      "versionSource": null
+    },
+    "showEdge": false,
+    "visualEditorEnabled": true
+  }
+}

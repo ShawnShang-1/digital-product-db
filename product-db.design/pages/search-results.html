@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索结果 - 数码产品数据库</title>
+    <style id="theme-vars">
+/*
+ * Pinguo design tokens
+ * Brand: Apple-inspired
+ * Theme mode: light
+ */
+:root {
+  /* brand */
+  --brand-50: #e8f2ff;
+  --brand-100: #cfe5ff;
+  --brand-200: #9fcbff;
+  --brand-300: #66abff;
+  --brand-400: #2e8dff;
+  --brand-500: #007aff;
+  --brand-600: #0064d6;
+  --brand-700: #004fad;
+  --brand-800: #003b82;
+  --brand-900: #00275a;
+
+  /* background */
+  --background-50: #ffffff;
+  --background-100: #f7f7fa;
+  --background-200: #f2f2f7;
+  --background-300: #e5e5ea;
+  --background-400: #d1d1d6;
+  --background-500: #aeaeb2;
+  --background-600: #8e8e93;
+  --background-700: #3a3a3c;
+  --background-800: #1c1c1e;
+  --background-900: #000000;
+
+  /* text */
+  --text-50: #f5f5f7;
+  --text-100: #e3e3e8;
+  --text-200: #c7c7cc;
+  --text-300: #aeaeb2;
+  --text-400: #8e8e93;
+  --text-500: #6e6e73;
+  --text-600: #48484a;
+  --text-700: #3c3c43;
+  --text-800: #1d1d1f;
+  --text-900: #000000;
+
+  /* icon */
+  --icon-50: #f5f5f7;
+  --icon-100: #e5e5ea;
+  --icon-200: #d1d1d6;
+  --icon-300: #c7c7cc;
+  --icon-400: #aeaeb2;
+  --icon-500: #8e8e93;
+  --icon-600: #6e6e73;
+  --icon-700: #48484a;
+  --icon-800: #2c2c2e;
+  --icon-900: #1d1d1f;
+
+  /* state-success */
+  --state-success: #34c759;
+  --state-success-dark: #30d158;
+  --state-success-surface: #e9f9ee;
+  --state-success-foreground: #ffffff;
+
+  /* state-error */
+  --state-error: #ff3b30;
+  --state-error-dark: #ff453a;
+  --state-error-surface: #ffecea;
+  --state-error-foreground: #ffffff;
+
+  /* semantic */
+  --background: var(--background-50);
+  --foreground: var(--text-800);
+  --card: var(--background-50);
+  --card-foreground: var(--text-800);
+  --popover: var(--background-50);
+  --popover-foreground: var(--text-900);
+
+  --primary: var(--brand-500);
+  --primary-foreground: var(--background-50);
+  --secondary: var(--background-200);
+  --secondary-foreground: var(--text-800);
+  --muted: var(--background-200);
+  --muted-foreground: var(--text-400);
+  --accent: var(--background-100);
+  --accent-foreground: var(--text-800);
+  --destructive: var(--state-error);
+  --destructive-foreground: var(--state-error-foreground);
+  --success: var(--state-success);
+  --success-foreground: var(--state-success-foreground);
+  --border: var(--background-300);
+  --input: var(--background-400);
+  --ring: var(--brand-500);
+
+  --icon: var(--icon-900);
+  --icon-muted: var(--icon-500);
+
+  /* chart */
+  --chart-1: var(--state-success);
+  --chart-2: var(--brand-500);
+  --chart-3: #ff9500;
+  --chart-4: #5856d6;
+  --chart-5: #af52de;
+
+  /* sidebar */
+  --sidebar: var(--background-200);
+  --sidebar-foreground: var(--text-800);
+  --sidebar-primary: var(--brand-500);
+  --sidebar-primary-foreground: var(--background-50);
+  --sidebar-accent: var(--background-300);
+  --sidebar-accent-foreground: var(--text-800);
+  --sidebar-border: var(--background-300);
+  --sidebar-ring: var(--brand-500);
+
+  /* TYPOGRAPHY */
+  --font-sans: "DM Sans", "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "DM Sans", "SF Pro Display", -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+  --tracking-normal: 0em;
+
+  /* RADIUS */
+  --radius: 19.2px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 19.2px;
+
+  /* SHADOWS */
+  --shadow-2xs: 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px -1px rgba(0, 0, 0, 0.05);
+  --shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px -8px rgba(0, 0, 0, 0.08), 0 4px 8px -4px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 16px 40px -10px rgba(0, 0, 0, 0.10), 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+  --shadow-2xl: 0 24px 64px -12px rgba(0, 0, 0, 0.12);
+
+  /* SPACING */
+  --spacing: 3.84px;
+}
+
+/* Apple-prefixed aliases for design system consistency */
+:root {
+  --apple-background: var(--background);
+  --apple-card: var(--card);
+  --apple-foreground: var(--foreground);
+  --apple-muted-foreground: var(--muted-foreground);
+  --apple-primary: var(--primary);
+  --apple-brand-500: var(--brand-500);
+  --apple-border: var(--border);
+  --apple-sidebar: var(--sidebar);
+  --apple-sidebar-accent: var(--sidebar-accent);
+  --apple-state-success: var(--state-success);
+  --apple-shadow-sm: var(--shadow-sm);
+  --apple-radius: var(--radius);
+  --apple-font-sans: var(--font-sans);
+  --apple-font-mono: var(--font-mono);
+}
+    </style>
+    <style id="component-vars">
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:40px;padding:0 20px;border:none;border-radius:999px;background:transparent;color:var(--foreground);font:600 14px/1 var(--font-sans);letter-spacing:var(--tracking-normal);white-space:nowrap;box-shadow:var(--shadow-sm);cursor:pointer;transition:background-color .18s ease,color .18s ease,opacity .18s ease,filter .18s ease}
+.btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.btn:disabled{opacity:.42;cursor:not-allowed}
+.btn-primary{background:var(--primary);color:var(--primary-foreground)}
+.btn-primary:hover{filter:brightness(.96)}
+.btn-secondary{height:40px;padding:0 20px;background:var(--secondary);color:var(--secondary-foreground)}
+.btn-secondary:hover{background:var(--muted)}
+.btn-text{height:auto;padding:0 4px;box-shadow:none}
+.btn-text:hover{color:var(--primary)}
+.btn-lg{height:48px;padding:0 24px;font-size:15px}
+
+.field{display:flex;align-items:center;gap:8px;min-width:0;height:44px;padding:0 14px;border:1px solid var(--input);border-radius:var(--radius);background:var(--background);color:var(--foreground);box-shadow:var(--shadow-xs);transition:border-color .18s ease,box-shadow .18s ease}
+.field:focus-within{border-color:var(--ring);box-shadow:0 0 0 3px rgba(0,122,255,0.15)}
+.field .icon{padding:0;border:0;background:transparent;color:var(--icon-muted);font-size:15px;display:flex;align-items:center}
+.field .clear{padding:4px;border:0;background:transparent;color:var(--icon-muted);cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;width:22px;height:22px;font-size:16px;line-height:1;transition:background-color .15s ease,color .15s ease}
+.field .clear:hover{background:var(--secondary);color:var(--foreground)}
+.field .control{flex:1;border:0;outline:0;background:transparent;color:inherit;font:inherit;font-size:15px}
+.field .control::placeholder{color:var(--muted-foreground)}
+
+.chip{display:inline-flex;align-items:center;height:30px;padding:0 14px;border-radius:999px;font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;border:none;transition:background-color .15s ease,color .15s ease}
+.chip-active{background:var(--primary);color:var(--primary-foreground)}
+.chip-inactive{background:var(--secondary);color:var(--foreground)}
+.chip-inactive:hover{background:var(--muted)}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+}
+@layer base {
+    body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+}
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--background); }
+      .text-foreground { color: var(--foreground); }
+      .border-background { border-color: var(--background); }
+      .ring-background { --tw-ring-color: var(--background); }
+      .bg-card { background-color: var(--card); }
+      .text-card { color: var(--card); }
+      .border-card { border-color: var(--card); }
+      .ring-card { --tw-ring-color: var(--card); }
+      .bg-foreground { background-color: var(--foreground); }
+      .text-card-foreground { color: var(--card-foreground); }
+      .border-card-foreground { border-color: var(--card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--card-foreground); }
+      .bg-popover { background-color: var(--popover); }
+      .text-popover { color: var(--popover); }
+      .border-popover { border-color: var(--popover); }
+      .ring-popover { --tw-ring-color: var(--popover); }
+      .bg-popover-foreground { background-color: var(--popover-foreground); }
+      .text-popover-foreground { color: var(--popover-foreground); }
+      .border-popover-foreground { border-color: var(--popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--popover-foreground); }
+      .bg-primary { background-color: var(--primary); }
+      .text-primary { color: var(--primary); }
+      .border-primary { border-color: var(--primary); }
+      .ring-primary { --tw-ring-color: var(--primary); }
+      .bg-primary-foreground { background-color: var(--primary-foreground); }
+      .text-primary-foreground { color: var(--primary-foreground); }
+      .border-primary-foreground { border-color: var(--primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--primary-foreground); }
+      .bg-secondary { background-color: var(--secondary); }
+      .text-secondary { color: var(--secondary); }
+      .border-secondary { border-color: var(--secondary); }
+      .ring-secondary { --tw-ring-color: var(--secondary); }
+      .bg-secondary-foreground { background-color: var(--secondary-foreground); }
+      .text-secondary-foreground { color: var(--secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--secondary-foreground); }
+      .bg-muted { background-color: var(--muted); }
+      .text-muted { color: var(--muted); }
+      .border-muted { border-color: var(--muted); }
+      .ring-muted { --tw-ring-color: var(--muted); }
+      .bg-muted-foreground { background-color: var(--muted-foreground); }
+      .text-muted-foreground { color: var(--muted-foreground); }
+      .border-muted-foreground { border-color: var(--muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--muted-foreground); }
+      .bg-accent { background-color: var(--accent); }
+      .text-accent { color: var(--accent); }
+      .border-accent { border-color: var(--accent); }
+      .ring-accent { --tw-ring-color: var(--accent); }
+      .bg-accent-foreground { background-color: var(--accent-foreground); }
+      .text-accent-foreground { color: var(--accent-foreground); }
+      .border-accent-foreground { border-color: var(--accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--accent-foreground); }
+      .bg-destructive { background-color: var(--destructive); }
+      .text-destructive { color: var(--destructive); }
+      .border-destructive { border-color: var(--destructive); }
+      .ring-destructive { --tw-ring-color: var(--destructive); }
+      .bg-destructive-foreground { background-color: var(--destructive-foreground); }
+      .text-destructive-foreground { color: var(--destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--destructive-foreground); }
+      .bg-border { background-color: var(--border); }
+      .text-border { color: var(--border); }
+      .border-border { border-color: var(--border); }
+      .ring-border { --tw-ring-color: var(--border); }
+      .bg-input { background-color: var(--input); }
+      .text-input { color: var(--input); }
+      .border-input { border-color: var(--input); }
+      .ring-input { --tw-ring-color: var(--input); }
+      .bg-ring { background-color: var(--ring); }
+      .text-ring { color: var(--ring); }
+      .border-ring { border-color: var(--ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+
+      /* macOS app shell */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { height: 100%; overflow: hidden; }
+      body {
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .app-window {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        background: var(--background);
+        overflow: hidden;
+      }
+
+      /* Title bar with traffic lights */
+      .title-bar {
+        display: flex;
+        align-items: center;
+        height: 38px;
+        min-height: 38px;
+        padding: 0 12px;
+        background: var(--background-200);
+        border-bottom: 1px solid var(--border);
+        -webkit-app-region: drag;
+        user-select: none;
+        position: relative;
+      }
+      .traffic-lights {
+        display: flex;
+        gap: 8px;
+        -webkit-app-region: no-drag;
+      }
+      .traffic-light {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .traffic-light.close { background: #ff5f57; }
+      .traffic-light.minimize { background: #febc2e; }
+      .traffic-light.maximize { background: #28c840; }
+      .traffic-light:hover { filter: brightness(0.9); }
+      .title-bar-title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-600);
+        letter-spacing: -0.01em;
+      }
+
+      /* Main body: sidebar + content */
+      .app-body {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 220px;
+        min-width: 220px;
+        background: var(--sidebar);
+        border-right: 1px solid var(--sidebar-border);
+        display: flex;
+        flex-direction: column;
+        padding: 8px 0;
+        overflow-y: auto;
+      }
+      .sidebar-section {
+        padding: 8px 12px 4px;
+      }
+      .sidebar-section-title {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted-foreground);
+        padding: 0 8px;
+        margin-bottom: 4px;
+      }
+      .sidebar-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 8px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--foreground);
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color .15s ease;
+        margin-bottom: 1px;
+      }
+      .sidebar-item:hover {
+        background: var(--sidebar-accent);
+      }
+      .sidebar-item.active {
+        background: var(--primary);
+        color: var(--primary-foreground);
+      }
+      .sidebar-item svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+      .sidebar-item-badge {
+        margin-left: auto;
+        font-size: 11px;
+        font-weight: 600;
+        background: var(--background-300);
+        color: var(--text-600);
+        padding: 1px 7px;
+        border-radius: 999px;
+      }
+      .sidebar-item.active .sidebar-item-badge {
+        background: rgba(255,255,255,0.25);
+        color: var(--primary-foreground);
+      }
+
+      /* Content area */
+      .content-area {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        background: var(--background);
+      }
+
+      /* Search header area */
+      .search-header {
+        padding: 24px 32px 16px;
+        flex-shrink: 0;
+      }
+
+      /* Large search field */
+      .search-field {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: 48px;
+        padding: 0 16px;
+        border: 2px solid var(--primary);
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: 0 0 0 3px rgba(0,122,255,0.12);
+        transition: border-color .18s ease, box-shadow .18s ease;
+      }
+      .search-field .search-icon {
+        color: var(--primary);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+      }
+      .search-field .search-icon svg { width: 18px; height: 18px; }
+      .search-field input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--foreground);
+        font-family: var(--font-sans);
+        min-width: 0;
+      }
+      .search-field input::placeholder {
+        color: var(--muted-foreground);
+      }
+      .search-shortcut {
+        display: inline-flex;
+        align-items: center;
+        height: 24px;
+        padding: 0 8px;
+        border-radius: 6px;
+        background: var(--background-200);
+        color: var(--text-500);
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        flex-shrink: 0;
+        border: 1px solid var(--border);
+      }
+      .search-clear {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: none;
+        background: var(--background-300);
+        color: var(--text-600);
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background-color .15s ease;
+      }
+      .search-clear:hover {
+        background: var(--background-400);
+      }
+
+      /* Stats and filter row */
+      .search-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 14px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .search-stats {
+        font-size: 13px;
+        color: var(--muted-foreground);
+        font-weight: 400;
+      }
+      .search-stats strong {
+        color: var(--foreground);
+        font-weight: 600;
+      }
+      .filter-chips {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      /* Results scroll area */
+      .results-scroll {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0 32px 32px;
+      }
+
+      /* Category group */
+      .result-group {
+        margin-top: 24px;
+      }
+      .result-group:first-child {
+        margin-top: 8px;
+      }
+      .group-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+        padding: 0 4px;
+      }
+      .group-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--foreground);
+        letter-spacing: -0.01em;
+      }
+      .group-count {
+        display: inline-flex;
+        align-items: center;
+        height: 20px;
+        padding: 0 8px;
+        border-radius: 999px;
+        background: var(--background-200);
+        color: var(--text-500);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      /* Result list */
+      .result-list {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+      }
+      .result-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        transition: background-color .15s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+      .result-row:last-child {
+        border-bottom: none;
+      }
+      .result-row:hover {
+        background: var(--background-100);
+      }
+      .result-category-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--background-200);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--primary);
+      }
+      .result-category-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+      .result-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .result-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--foreground);
+        line-height: 1.3;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .result-name .hl {
+        color: var(--primary);
+        background: var(--brand-50);
+        padding: 0 2px;
+        border-radius: 3px;
+      }
+      .result-brand {
+        font-size: 12px;
+        color: var(--muted-foreground);
+        margin-top: 2px;
+        font-weight: 500;
+      }
+      .result-specs {
+        font-size: 12px;
+        color: var(--muted-foreground);
+        margin-top: 3px;
+        font-family: var(--font-mono);
+        font-weight: 400;
+      }
+      .result-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--primary);
+        text-decoration: none;
+        flex-shrink: 0;
+        padding: 6px 0;
+        white-space: nowrap;
+      }
+      .result-action:hover {
+        text-decoration: underline;
+      }
+      .result-action svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* Empty group (zero results) */
+      .result-group.empty .result-list {
+        display: none;
+      }
+      .empty-hint {
+        font-size: 13px;
+        color: var(--muted-foreground);
+        padding: 12px 16px;
+        font-style: italic;
+      }
+
+      /* Bottom CTA area */
+      .add-prompt {
+        margin-top: 32px;
+        padding: 24px;
+        background: var(--background-100);
+        border: 1px dashed var(--border);
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .add-prompt-text {
+        font-size: 14px;
+        color: var(--muted-foreground);
+      }
+      .add-prompt-text strong {
+        color: var(--foreground);
+        font-weight: 600;
+      }
+    </style>
+</head>
+<body>
+    <main>
+      <div class="app-window">
+        <!-- Title Bar -->
+        <div class="title-bar">
+          <div class="traffic-lights">
+            <button class="traffic-light close" aria-label="关闭"></button>
+            <button class="traffic-light minimize" aria-label="最小化"></button>
+            <button class="traffic-light maximize" aria-label="最大化"></button>
+          </div>
+          <div class="title-bar-title">搜索</div>
+        </div>
+
+        <!-- App Body -->
+        <div class="app-body">
+          <!-- Sidebar -->
+          <aside class="sidebar">
+            <div class="sidebar-section">
+              <div class="sidebar-section-title">浏览</div>
+              <a class="sidebar-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                <span>概览</span>
+              </a>
+              <a class="sidebar-item active" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>搜索</span>
+              </a>
+            </div>
+            <div class="sidebar-section">
+              <div class="sidebar-section-title">产品类别</div>
+              <a class="sidebar-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                <span>电脑CPU</span>
+                <span class="sidebar-item-badge">128</span>
+              </a>
+              <a class="sidebar-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="10" x="3" y="7" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M15 7v10"/><path d="M18 7v10"/><path d="M21 11v2"/></svg>
+                <span>手机SoC</span>
+                <span class="sidebar-item-badge">86</span>
+              </a>
+              <a class="sidebar-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                <span>显卡GPU</span>
+                <span class="sidebar-item-badge">64</span>
+              </a>
+              <a class="sidebar-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                <span>相机机身</span>
+                <span class="sidebar-item-badge">42</span>
+              </a>
+              <a class="sidebar-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                <span>汽车</span>
+                <span class="sidebar-item-badge">35</span>
+              </a>
+            </div>
+            <div class="sidebar-section">
+              <div class="sidebar-section-title">管理</div>
+              <a class="sidebar-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                <span>新增产品</span>
+              </a>
+              <a class="sidebar-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>对比</span>
+              </a>
+            </div>
+          </aside>
+
+          <!-- Content Area -->
+          <div class="content-area">
+            <div class="search-header">
+              <!-- Search Input -->
+              <div class="search-field">
+                <span class="search-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </span>
+                <input type="text" value="i9" aria-label="搜索产品" autofocus />
+                <span class="search-shortcut">&#8984;F</span>
+                <button class="search-clear" aria-label="清除搜索">&times;</button>
+              </div>
+
+              <!-- Stats & Filters -->
+              <div class="search-meta">
+                <div class="search-stats">找到 <strong>12</strong> 个结果，用时 <strong>0.03</strong> 秒</div>
+                <div class="filter-chips">
+                  <button class="chip chip-active">全部 <span style="margin-left:4px;opacity:0.8">12</span></button>
+                  <button class="chip chip-inactive">CPU <span style="margin-left:4px;opacity:0.6">5</span></button>
+                  <button class="chip chip-inactive">手机SoC <span style="margin-left:4px;opacity:0.6">0</span></button>
+                  <button class="chip chip-inactive">显卡 <span style="margin-left:4px;opacity:0.6">2</span></button>
+                  <button class="chip chip-inactive">相机 <span style="margin-left:4px;opacity:0.6">3</span></button>
+                  <button class="chip chip-inactive">汽车 <span style="margin-left:4px;opacity:0.6">2</span></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scrollable Results -->
+            <div class="results-scroll">
+              <!-- CPU Group (5 results) -->
+              <section class="result-group">
+                <div class="group-header">
+                  <span class="group-title">电脑CPU</span>
+                  <span class="group-count">5 个结果</span>
+                </div>
+                <div class="result-list">
+                  <a class="result-row" href="#" data-dom-id="link-product-detail">
+                    <div class="result-category-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Intel Core <span class="hl">i9</span>-14900K</div>
+                      <div class="result-brand">Intel</div>
+                      <div class="result-specs">24核32线程 · 6.0GHz · 253W · LGA1700</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Intel Core <span class="hl">i9</span>-13900KS</div>
+                      <div class="result-brand">Intel</div>
+                      <div class="result-specs">24核32线程 · 6.0GHz · 253W · LGA1700</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Intel Core <span class="hl">i9</span>-14900KF</div>
+                      <div class="result-brand">Intel</div>
+                      <div class="result-specs">24核32线程 · 6.0GHz · 253W · 无核显</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Intel Core <span class="hl">i9</span>-12900K</div>
+                      <div class="result-brand">Intel</div>
+                      <div class="result-specs">16核24线程 · 5.2GHz · 241W · LGA1700</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Intel Core <span class="hl">i9</span>-11900K</div>
+                      <div class="result-brand">Intel</div>
+                      <div class="result-specs">8核16线程 · 5.3GHz · 250W · LGA1200</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                </div>
+              </section>
+
+              <!-- GPU Group (2 results) -->
+              <section class="result-group">
+                <div class="group-header">
+                  <span class="group-title">显卡GPU</span>
+                  <span class="group-count">2 个结果</span>
+                </div>
+                <div class="result-list">
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon" style="color:#76b900">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">NVIDIA RTX <span class="hl">i9</span>00 Ti</div>
+                      <div class="result-brand">NVIDIA</div>
+                      <div class="result-specs">Blackwell架构 · 24GB GDDR7 · 450W · 旗舰游戏卡</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon" style="color:#ed1c24">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">AMD Radeon RX <span class="hl">i9</span>00 XT</div>
+                      <div class="result-brand">AMD</div>
+                      <div class="result-specs">RDNA4架构 · 32GB GDDR6 · 350W · 高端游戏卡</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                </div>
+              </section>
+
+              <!-- Camera Group (3 results) -->
+              <section class="result-group">
+                <div class="group-header">
+                  <span class="group-title">相机机身</span>
+                  <span class="group-count">3 个结果</span>
+                </div>
+                <div class="result-list">
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon" style="color:#1d1d1f">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Canon EOS R<span class="hl">i9</span></div>
+                      <div class="result-brand">Canon</div>
+                      <div class="result-specs">全画幅 · 4500万像素 · 8K视频 · 双卡槽</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon" style="color:#1d1d1f">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Sony α<span class="hl">i9</span> (ILCE-<span class="hl">i9</span>)</div>
+                      <div class="result-brand">Sony</div>
+                      <div class="result-specs">全画幅堆栈式 · 5000万像素 · 120fps连拍 · AI对焦</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon" style="color:#1d1d1f">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Nikon Z <span class="hl">i9</span></div>
+                      <div class="result-brand">Nikon</div>
+                      <div class="result-specs">全画幅堆栈式 · 4571万像素 · 8K60p · 无机械快门</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                </div>
+              </section>
+
+              <!-- Car Group (2 results) -->
+              <section class="result-group">
+                <div class="group-header">
+                  <span class="group-title">汽车</span>
+                  <span class="group-count">2 个结果</span>
+                </div>
+                <div class="result-list">
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon" style="color:#1d1d1f">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">BMW <span class="hl">i9</span> (i7 M70L xDrive)</div>
+                      <div class="result-brand">BMW</div>
+                      <div class="result-specs">纯电动轿车 · 660马力 · 101.7kWh电池 · CLTC 650km</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                  <a class="result-row" href="#">
+                    <div class="result-category-icon" style="color:#1d1d1f">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                    </div>
+                    <div class="result-info">
+                      <div class="result-name">Mercedes-AMG <span class="hl">i9</span> 概念车</div>
+                      <div class="result-brand">Mercedes-Benz</div>
+                      <div class="result-specs">纯电性能 · 800V平台 · 1000+马力 · 概念展示</div>
+                    </div>
+                    <span class="result-action">查看详情 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+                  </a>
+                </div>
+              </section>
+
+              <!-- Bottom add prompt -->
+              <div class="add-prompt">
+                <div class="add-prompt-text">没有找到你要的？<strong>尝试添加新条目</strong>到数据库中。</div>
+                <button class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                  新增产品
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      // Initialize Lucide icons (fallback - we use inline SVGs)
+      if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+    </script>
+</body>
+</html>
