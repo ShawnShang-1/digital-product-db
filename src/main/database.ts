@@ -254,9 +254,20 @@ export function searchAll(keyword: string): Record<string, ProductRecord[]> {
 
 /** 插入示例数据（仅当表为空时） */
 export function seedIfEmpty(): void {
+  // 确保 meta 表存在
+  db.exec('CREATE TABLE IF NOT EXISTS _meta (key TEXT PRIMARY KEY, value TEXT)');
+  const row = db.prepare("SELECT value FROM _meta WHERE key = 'data_version'").get() as { value: string } | undefined;
+  const currentVersion = '3'; // 每次更新 seed 数据后递增此版本号
+  const needsReseed = !row || row.value !== currentVersion;
+
   for (const s of schemas) {
-    const c = countRecords(s.id);
-    if (c > 0) continue;
+    if (needsReseed) {
+      // 版本号变化，清空旧数据重新 seed
+      db.exec(`DELETE FROM "${s.tableName}"`);
+    } else {
+      const c = countRecords(s.id);
+      if (c > 0) continue;
+    }
     const seed = seedRegistry[s.id];
     if (seed && seed.length) {
       const insert = db.prepare(
@@ -268,6 +279,11 @@ export function seedIfEmpty(): void {
         }
       });
       tx(seed);
+      console.log(`[db] seeded ${s.id}: ${seed.length} rows`);
     }
   }
+
+  // 写入版本号
+  db.prepare("INSERT OR REPLACE INTO _meta (key, value) VALUES ('data_version', ?)").run(currentVersion);
+  console.log('[db] seed version:', currentVersion);
 }
