@@ -62,9 +62,22 @@ function createWindow(): void {
     icon: iconPath,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false,
+      sandbox: true,
       contextIsolation: true,
       nodeIntegration: false
+    }
+  });
+
+  // 阻止主窗口导航到外部页面
+  mainWindow.webContents.on('will-navigate', (_event, url) => {
+    const allowed = mainWindow && (
+      url === mainWindow.webContents.getURL() ||
+      url.startsWith('file://') ||
+      url.startsWith('http://localhost:')
+    );
+    if (!allowed) {
+      _event.preventDefault();
+      shell.openExternal(url);
     }
   });
 
@@ -88,11 +101,6 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'));
   }
-
-  // 让渲染进程接管窗口拖动（标题栏区域）
-  mainWindow.webContents.on('did-finish-load', () => {
-    // no-op
-  });
 
   // 外链在系统浏览器打开
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {

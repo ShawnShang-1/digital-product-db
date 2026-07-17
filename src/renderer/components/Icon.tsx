@@ -9,8 +9,6 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
   paths?: string;
 }
 
-const cache = new Map<string, string>();
-
 export const Icon: React.FC<IconProps> = ({ size = 16, paths = '', children, ...rest }) => {
   const inner = paths || children;
   return (

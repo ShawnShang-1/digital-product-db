@@ -472,13 +472,18 @@ input, textarea, select { user-select: text; }
   font-family: var(--apple-font-mono);
 }
 
-/* ===== Select ===== */
-.select-field {
+/* ===== Filter Dropdown (多选) ===== */
+.filter-dropdown-wrapper {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+}
+.filter-dropdown-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   height: 32px;
-  padding: 0 28px 0 12px;
+  padding: 0 12px;
   border-radius: 8px;
   background: var(--apple-background);
   border: 1px solid var(--apple-border);
@@ -488,27 +493,82 @@ input, textarea, select { user-select: text; }
   cursor: pointer;
   font-family: inherit;
   transition: border-color .15s ease, background-color .15s ease;
-  appearance: none;
-  -webkit-appearance: none;
+  white-space: nowrap;
 }
-.dark .select-field { color: var(--apple-text-50); }
-.select-field:hover { background: var(--apple-background-100); }
-.select-field:focus {
-  outline: none;
-  border-color: var(--apple-ring);
-  box-shadow: 0 0 0 3px rgba(0,122,255,0.15);
+.dark .filter-dropdown-btn { color: var(--apple-text-50); }
+.filter-dropdown-btn:hover { background: var(--apple-background-100); }
+.filter-dropdown-btn.active {
+  border-color: var(--apple-primary);
+  background: rgba(0,122,255,0.06);
+  color: var(--apple-primary);
 }
-.select-wrapper { position: relative; display: inline-flex; align-items: center; }
-.select-wrapper::after {
-  content: '';
+.dark .filter-dropdown-btn.active {
+  background: rgba(10,132,255,0.12);
+  color: var(--apple-primary);
+}
+.filter-dropdown-panel {
   position: absolute;
-  right: 10px;
-  width: 12px;
-  height: 12px;
-  background-color: var(--apple-text-400);
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  pointer-events: none;
+  top: 38px;
+  left: 0;
+  z-index: 100;
+  min-width: 180px;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--apple-background);
+  border: 1px solid var(--apple-border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
+}
+.dark .filter-dropdown-panel {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.2);
+}
+.filter-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--apple-text-400);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--apple-border);
+}
+.filter-dropdown-clear {
+  font-size: 11px;
+  color: var(--apple-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+.filter-dropdown-clear:hover { opacity: 0.8; }
+.filter-dropdown-list {
+  padding: 4px;
+}
+.filter-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--apple-text-800);
+  transition: background-color .1s ease;
+}
+.dark .filter-dropdown-item { color: var(--apple-text-50); }
+.filter-dropdown-item:hover { background: var(--apple-background-100); }
+.filter-dropdown-item input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--apple-primary);
+  cursor: pointer;
+  margin: 0;
+}
+.filter-dropdown-label {
+  flex: 1;
+  user-select: none;
 }
 
 /* ===== Table ===== */

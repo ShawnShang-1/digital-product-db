@@ -14,3 +14,10 @@ release
 
 # 上传临时目录
 .uploads
+
+# TypeScript 构建缓存
+*.tsbuildinfo
+
+# 编译产物（源目录下不应有 .js / .jsx）
+src/**/*.js
+src/**/*.jsx

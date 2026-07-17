@@ -49,7 +49,7 @@ function createTable(schema: CategorySchema): void {
 
 /** 初始化数据库 */
 export function initDatabase(): void {
-  console.log('[db] uid:', process.getuid(), 'home:', homedir(), 'cwd:', process.cwd());
+  console.log('[db] home:', homedir(), 'cwd:', process.cwd());
   // 候选数据目录（按优先级）
   const candidates = [
     app.getPath('userData'),
@@ -130,23 +130,39 @@ export function listRecords(query: ListQuery): ProductRecord[] {
   }
 
   if (query.filters) {
-    for (const [k, v] of Object.entries(query.filters)) {
-      if (v && v !== '__all__') {
-        where.push(`"${k}" = ?`);
-        params.push(v);
-      }
+    for (const [k, values] of Object.entries(query.filters)) {
+      if (!values || values.length === 0) continue;
+      // 白名单校验：只允许 schema 已定义的字段参与筛选
+      const fieldDef = schema.fields.find((f) => f.key === k);
+      if (!fieldDef) continue;
+      const placeholders = values.map(() => '?').join(', ');
+      where.push(`"${k}" IN (${placeholders})`);
+      params.push(...values);
     }
   }
 
   let sql = `SELECT * FROM "${schema.tableName}"`;
   if (where.length) sql += ` WHERE ${where.join(' AND ')}`;
 
+  const applySort = (field: string, direction: 'asc' | 'desc') => {
+    const dir = direction === 'desc' ? 'DESC' : 'ASC';
+    // 数值类字段排序时显式 CAST，避免字符串排序
+    const fieldDef = schema.fields.find((f) => f.key === field);
+    if (fieldDef && (fieldDef.type === 'number' || fieldDef.type === 'price' || fieldDef.type === 'year')) {
+      sql += ` ORDER BY CAST("${field}" AS REAL) ${dir} NULLS LAST`;
+    } else {
+      sql += ` ORDER BY "${field}" ${dir} NULLS LAST`;
+    }
+  };
+
   if (query.sort) {
-    const dir = query.sort.direction === 'desc' ? 'DESC' : 'ASC';
-    sql += ` ORDER BY "${query.sort.field}" ${dir} NULLS LAST`;
+    // 白名单校验：只允许 schema 已定义的 sortable 字段
+    const sortField = schema.fields.find((f) => f.key === query.sort!.field);
+    if (sortField) {
+      applySort(query.sort.field, query.sort.direction);
+    }
   } else if (schema.defaultSort) {
-    const dir = schema.defaultSort.direction === 'desc' ? 'DESC' : 'ASC';
-    sql += ` ORDER BY "${schema.defaultSort.field}" ${dir} NULLS LAST`;
+    applySort(schema.defaultSort.field, schema.defaultSort.direction);
   }
 
   return db.prepare(sql).all(...params) as ProductRecord[];
@@ -252,22 +268,15 @@ export function searchAll(keyword: string): Record<string, ProductRecord[]> {
   return out;
 }
 
-/** 插入示例数据（仅当表为空时） */
+/** 插入示例数据（仅当表为空时，绝不覆盖已有数据） */
 export function seedIfEmpty(): void {
   // 确保 meta 表存在
   db.exec('CREATE TABLE IF NOT EXISTS _meta (key TEXT PRIMARY KEY, value TEXT)');
-  const row = db.prepare("SELECT value FROM _meta WHERE key = 'data_version'").get() as { value: string } | undefined;
   const currentVersion = '3'; // 每次更新 seed 数据后递增此版本号
-  const needsReseed = !row || row.value !== currentVersion;
 
   for (const s of schemas) {
-    if (needsReseed) {
-      // 版本号变化，清空旧数据重新 seed
-      db.exec(`DELETE FROM "${s.tableName}"`);
-    } else {
-      const c = countRecords(s.id);
-      if (c > 0) continue;
-    }
+    const c = countRecords(s.id);
+    if (c > 0) continue; // 已有数据，绝不覆盖
     const seed = seedRegistry[s.id];
     if (seed && seed.length) {
       const insert = db.prepare(

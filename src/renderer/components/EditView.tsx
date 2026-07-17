@@ -1,7 +1,7 @@
 /**
  * 新增/编辑表单 — 按 schema 字段自动渲染，支持 Tab 切换
  */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { CategorySchema } from '../../shared/schema';
 import { Icon, ICONS } from './Icon';
 
@@ -15,7 +15,6 @@ interface Props {
 export const EditView: React.FC<Props> = ({ schema, id, onCancel, onSaved }) => {
   const [values, setValues] = useState<Record<string, any>>({});
   const [saving, setSaving] = useState(false);
-  const firstInputRef = useRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (id !== null) {
@@ -120,8 +119,7 @@ export const EditView: React.FC<Props> = ({ schema, id, onCancel, onSaved }) => 
                       value: values[f.key] ?? '',
                       onChange: (e: any) => handleChange(f.key, e.target.value),
                       placeholder: f.placeholder || `请输入${f.label}`,
-                      className: `${isTextarea ? 'form-textarea' : f.type === 'select' ? 'form-select' : 'form-input'} ${f.mono ? 'mono' : ''}`,
-                      ref: firstInputRef
+                      className: `${isTextarea ? 'form-textarea' : f.type === 'select' ? 'form-select' : 'form-input'} ${f.mono ? 'mono' : ''}`
                     };
                     return (
                       <div className={`form-item ${isTextarea ? 'full' : ''}`} key={f.key}>

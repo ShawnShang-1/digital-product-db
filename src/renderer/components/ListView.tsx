@@ -1,7 +1,7 @@
 /**
- * 列表视图 — 表格展示 + 排序 + 筛选 + 多选对比
+ * 列表视图 — 表格展示 + 排序 + 多选筛选 + 多选对比
  */
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import type { CategorySchema, ProductRecord, ListQuery } from '../../shared/schema';
 import { Icon, ICONS } from './Icon';
 import type { CompareItem } from '../App';
@@ -13,6 +13,12 @@ interface Props {
   compareQueue: CompareItem[];
   onToggleCompare: (item: CompareItem) => void;
   onRefresh: () => void;
+  /** 当前筛选状态（由 App 控制） */
+  filters: Record<string, string[]>;
+  /** 当前排序状态（由 App 控制） */
+  sort?: { field: string; direction: 'asc' | 'desc' };
+  onFiltersChange: (filters: Record<string, string[]>) => void;
+  onSortChange: (sort: { field: string; direction: 'asc' | 'desc' } | undefined) => void;
 }
 
 export const ListView: React.FC<Props> = ({
@@ -21,14 +27,19 @@ export const ListView: React.FC<Props> = ({
   onEdit,
   compareQueue,
   onToggleCompare,
-  onRefresh
+  onRefresh,
+  filters,
+  sort,
+  onFiltersChange,
+  onSortChange
 }) => {
   const [records, setRecords] = useState<ProductRecord[]>([]);
   const [loading, setLoading] = useState(true);
-  const [sort, setSort] = useState(schema.defaultSort);
-  const [filters, setFilters] = useState<Record<string, string>>({});
+  const [error, setError] = useState<string | null>(null);
   const [filterOptions, setFilterOptions] = useState<Record<string, string[]>>({});
   const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // 列表列定义：listColumn 为 true 的字段
   const listColumns = useMemo(
@@ -36,17 +47,26 @@ export const ListView: React.FC<Props> = ({
     [schema]
   );
 
+  const effectiveSort = sort || schema.defaultSort;
+
   const load = useCallback(async () => {
     setLoading(true);
-    const query: ListQuery = {
-      categoryId: schema.id,
-      sort,
-      filters
-    };
-    const rows = await window.db.list(query);
-    setRecords(rows);
-    setLoading(false);
-  }, [schema.id, sort, filters]);
+    setError(null);
+    try {
+      const query: ListQuery = {
+        categoryId: schema.id,
+        sort: effectiveSort,
+        filters
+      };
+      const rows = await window.db.list(query);
+      setRecords(rows);
+    } catch (e) {
+      setError('加载失败，请重试');
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  }, [schema.id, effectiveSort, filters]);
 
   useEffect(() => {
     load();
@@ -56,24 +76,43 @@ export const ListView: React.FC<Props> = ({
     window.db.filters(schema.id).then(setFilterOptions);
   }, [schema.id, records.length]);
 
-  // 切换分类时重置状态
+  // 切换分类时重置选中
   useEffect(() => {
-    setSort(schema.defaultSort);
-    setFilters({});
     setSelected(new Set());
   }, [schema.id]);
 
-  const handleSort = (field: string) => {
-    setSort((prev) => {
-      if (prev?.field === field) {
-        return { field, direction: prev.direction === 'asc' ? 'desc' : 'asc' };
+  // 点击外部关闭下拉
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
       }
-      return { field, direction: 'desc' };
-    });
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const handleSort = (field: string) => {
+    if (effectiveSort?.field === field) {
+      const newDir = effectiveSort.direction === 'asc' ? 'desc' : 'asc';
+      onSortChange({ field, direction: newDir });
+    } else {
+      onSortChange({ field, direction: 'desc' });
+    }
   };
 
-  const handleFilter = (key: string, value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value === '__all__' ? '' : value }));
+  const handleFilterToggle = (key: string, value: string) => {
+    const current = filters[key] || [];
+    const next = current.includes(value)
+      ? current.filter(v => v !== value)
+      : [...current, value];
+    onFiltersChange({ ...filters, [key]: next });
+  };
+
+  const handleFilterClear = (key: string) => {
+    const next = { ...filters };
+    delete next[key];
+    onFiltersChange(next);
   };
 
   const toggleSelect = (id: number, e: React.MouseEvent) => {
@@ -120,18 +159,43 @@ export const ListView: React.FC<Props> = ({
             const field = schema.fields.find((f) => f.key === fk);
             if (!field) return null;
             const opts = filterOptions[fk] || field.options || [];
+            const selectedValues = filters[fk] || [];
+            const isOpen = openDropdown === fk;
             return (
-              <div className="select-wrapper" key={fk}>
-                <select
-                  className="select-field"
-                  value={filters[fk] || '__all__'}
-                  onChange={(e) => handleFilter(fk, e.target.value)}
+              <div className="filter-dropdown-wrapper" key={fk} ref={isOpen ? dropdownRef : undefined}>
+                <button
+                  className={`filter-dropdown-btn ${selectedValues.length > 0 ? 'active' : ''}`}
+                  onClick={() => setOpenDropdown(isOpen ? null : fk)}
                 >
-                  <option value="__all__">全部{field.label}</option>
-                  {opts.map((o) => (
-                    <option key={o} value={o}>{o}</option>
-                  ))}
-                </select>
+                  {selectedValues.length > 0
+                    ? `${field.label} (${selectedValues.length})`
+                    : field.label}
+                  <Icon size={10} paths={ICONS.arrowDown} style={{ marginLeft: 4, opacity: 0.5 }} />
+                </button>
+                {isOpen && (
+                  <div className="filter-dropdown-panel">
+                    <div className="filter-dropdown-header">
+                      <span>{field.label}</span>
+                      {selectedValues.length > 0 && (
+                        <button className="filter-dropdown-clear" onClick={() => handleFilterClear(fk)}>
+                          清除
+                        </button>
+                      )}
+                    </div>
+                    <div className="filter-dropdown-list">
+                      {opts.map((o) => (
+                        <label key={o} className="filter-dropdown-item">
+                          <input
+                            type="checkbox"
+                            checked={selectedValues.includes(o)}
+                            onChange={() => handleFilterToggle(fk, o)}
+                          />
+                          <span className="filter-dropdown-label">{o}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
@@ -161,6 +225,12 @@ export const ListView: React.FC<Props> = ({
             <div className="empty-state-icon"><Icon size={28} paths={ICONS.database} /></div>
             <div className="empty-state-title">加载中…</div>
           </div>
+        ) : error ? (
+          <div className="empty-state">
+            <div className="empty-state-icon"><Icon size={28} paths={ICONS.database} /></div>
+            <div className="empty-state-title" style={{ color: 'var(--apple-danger)' }}>{error}</div>
+            <button className="btn btn-secondary" onClick={load} style={{ marginTop: 8 }}>重试</button>
+          </div>
         ) : records.length === 0 ? (
           <div className="empty-state">
             <div className="empty-state-icon"><Icon size={28} paths={schema.icon} /></div>
@@ -180,8 +250,8 @@ export const ListView: React.FC<Props> = ({
                   <th
                     key={col.key}
                     className={`${col.sortable ? 'sortable' : ''} ${
-                      sort?.field === col.key ? 'sorted' : ''
-                    } ${sort?.field === col.key && sort.direction === 'desc' ? 'sort-desc' : ''}`}
+                      effectiveSort?.field === col.key ? 'sorted' : ''
+                    } ${effectiveSort?.field === col.key && effectiveSort.direction === 'desc' ? 'sort-desc' : ''}`}
                     style={col.listWidth ? { width: col.listWidth } : undefined}
                     onClick={col.sortable ? () => handleSort(col.key) : undefined}
                   >
@@ -204,7 +274,16 @@ export const ListView: React.FC<Props> = ({
                   <tr
                     key={r.id}
                     className={sel ? 'selected' : ''}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`查看 ${String(r[schema.nameField] || '')}`}
                     onClick={() => onOpenDetail(r.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onOpenDetail(r.id);
+                      }
+                    }}
                   >
                     <td className="cell-check" onClick={(e) => toggleSelect(r.id, e)}>
                       <div className={`checkbox ${sel || cmp ? 'checked' : ''}`}>

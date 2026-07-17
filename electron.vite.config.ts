@@ -21,7 +21,7 @@ export default defineConfig({
         '@': resolve('src/renderer')
       }
     },
-    plugins: [react()]
-  },
-  assetsInclude: ['assets/icons/**']
+    plugins: [react()],
+    assetsInclude: ['assets/icons/**']
+  }
 })

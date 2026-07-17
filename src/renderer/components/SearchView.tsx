@@ -1,7 +1,7 @@
 /**
  * 全局搜索结果页 — 跨分类模糊搜索，结果按类别分组，关键词高亮
  */
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import type { CategorySchema, ProductRecord } from '../../shared/schema';
 import { Icon, ICONS } from './Icon';
 
@@ -15,8 +15,10 @@ interface Props {
 export const SearchView: React.FC<Props> = ({ schemas, keyword, onOpenDetail, searchInputRef }) => {
   const [results, setResults] = useState<Record<string, ProductRecord[]>>({});
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [localKeyword, setLocalKeyword] = useState(keyword);
+  const requestId = useRef(0);
 
   useEffect(() => {
     setLocalKeyword(keyword);
@@ -25,12 +27,25 @@ export const SearchView: React.FC<Props> = ({ schemas, keyword, onOpenDetail, se
   const doSearch = useCallback(async (kw: string) => {
     if (!kw.trim()) {
       setResults({});
+      setError(null);
       return;
     }
+    const id = ++requestId.current;
     setLoading(true);
-    const r = await window.db.search(kw.trim());
-    setResults(r);
-    setLoading(false);
+    setError(null);
+    try {
+      const r = await window.db.search(kw.trim());
+      // 只应用最新请求的结果，忽略过期响应
+      if (id === requestId.current) {
+        setResults(r);
+        setLoading(false);
+      }
+    } catch (e) {
+      if (id === requestId.current) {
+        setError('搜索失败，请重试');
+        setLoading(false);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -97,6 +112,8 @@ export const SearchView: React.FC<Props> = ({ schemas, keyword, onOpenDetail, se
           <div className="search-stats">
             {loading ? (
               '搜索中…'
+            ) : error ? (
+              <span style={{ color: 'var(--apple-danger)' }}>{error}</span>
             ) : localKeyword.trim() ? (
               <>共找到 <strong>{totalCount}</strong> 条匹配「{localKeyword}」的结果</>
             ) : (

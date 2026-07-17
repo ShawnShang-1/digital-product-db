@@ -25,6 +25,7 @@ export const DetailView: React.FC<Props> = ({
   isInCompare
 }) => {
   const [record, setRecord] = useState<ProductRecord | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   useEffect(() => {
     window.db.get(schema.id, id).then(setRecord);
@@ -81,10 +82,22 @@ export const DetailView: React.FC<Props> = ({
             <Icon size={14} paths={ICONS.edit} />
             编辑
           </button>
-          <button className="btn-action btn-text-danger" onClick={onDelete}>
-            <Icon size={14} paths={ICONS.trash} />
-            删除
-          </button>
+          {confirmDelete ? (
+            <>
+              <span style={{ fontSize: 12, color: 'var(--apple-danger)' }}>确认删除？</span>
+              <button className="btn-action btn-text-danger" onClick={() => { onDelete(); setConfirmDelete(false); }}>
+                确认
+              </button>
+              <button className="btn-action btn-secondary" onClick={() => setConfirmDelete(false)}>
+                取消
+              </button>
+            </>
+          ) : (
+            <button className="btn-action btn-text-danger" onClick={() => setConfirmDelete(true)}>
+              <Icon size={14} paths={ICONS.trash} />
+              删除
+            </button>
+          )}
         </div>
       </div>
 

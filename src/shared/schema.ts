@@ -94,7 +94,7 @@ export type ProductRecord = Record<string, any> & {
 export interface ListQuery {
   categoryId: string;
   sort?: { field: string; direction: 'asc' | 'desc' };
-  filters?: Record<string, string>;
+  filters?: Record<string, string[]>;
   search?: string;
 }
 

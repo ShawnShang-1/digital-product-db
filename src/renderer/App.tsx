@@ -37,6 +37,10 @@ export default function App() {
   const [refreshKey, setRefreshKey] = useState(0);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // 每个分类的筛选和排序状态（提升到 App 级别，跨视图保持）
+  const [categoryFilters, setCategoryFilters] = useState<Record<string, Record<string, string[]>>>({});
+  const [categorySorts, setCategorySorts] = useState<Record<string, { field: string; direction: 'asc' | 'desc' } | undefined>>({});
+
   // 初始化：加载 schema / 计数 / 持久化状态
   useEffect(() => {
     (async () => {
@@ -232,6 +236,10 @@ export default function App() {
               compareQueue={compareQueue}
               onToggleCompare={toggleCompare}
               onRefresh={refresh}
+              filters={categoryFilters[currentCategoryId] || {}}
+              sort={categorySorts[currentCategoryId]}
+              onFiltersChange={(f) => setCategoryFilters(prev => ({ ...prev, [currentCategoryId]: f }))}
+              onSortChange={(s) => setCategorySorts(prev => ({ ...prev, [currentCategoryId]: s }))}
             />
           )}
           {view === 'detail' && currentSchema && selectedId !== null && (
