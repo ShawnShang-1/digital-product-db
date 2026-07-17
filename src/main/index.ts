@@ -33,14 +33,13 @@ if (!app.isPackaged) {
   app.setPath('userData', join(app.getPath('appData'), 'Digital Product DB'));
 }
 
-// 规避未签名应用 GPU 子进程沙箱初始化失败问题
-app.disableHardwareAcceleration();
-
 // dev 模式下 TRAE/IDE 沙箱会拦截 chromium 子进程的 sandbox 系统调用，
-// 导致 GPU/Network 进程反复崩溃，应用整体退出。dev 下禁用 sandbox 绕过。
+// 导致 GPU/Network 进程反复崩溃，应用整体退出。dev 下禁用硬件加速和 sandbox 绕过。
 if (!app.isPackaged) {
+  app.disableHardwareAcceleration();
   app.commandLine.appendSwitch('no-sandbox');
   app.commandLine.appendSwitch('disable-gpu');
+  app.commandLine.appendSwitch('disable-gpu-sandbox');
 }
 
 function createWindow(): void {
@@ -55,9 +54,8 @@ function createWindow(): void {
     minWidth: 1080,
     minHeight: 680,
     show: false,
-    frame: false,
     titleBarStyle: 'hidden',
-    trafficLightPosition: { x: 16, y: 18 },
+    trafficLightPosition: { x: 16, y: 16 },
     backgroundColor: '#ffffff',
     vibrancy: 'under-window',
     visualEffectState: 'active',

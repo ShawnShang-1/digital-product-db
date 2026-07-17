@@ -33,23 +33,7 @@ export const TitleBar: React.FC<Props> = ({ schema, view, theme, onThemeChange }
 
   return (
     <div className="title-bar">
-      <div className="title-bar-traffic">
-        <button
-          className="traffic-light traffic-close"
-          onClick={() => window.db.win.close()}
-          aria-label="关闭"
-        />
-        <button
-          className="traffic-light traffic-minimize"
-          onClick={() => window.db.win.minimize()}
-          aria-label="最小化"
-        />
-        <button
-          className="traffic-light traffic-maximize"
-          onClick={() => window.db.win.maximize()}
-          aria-label="最大化"
-        />
-      </div>
+      <div className="title-bar-traffic-placeholder" />
       <div className="title-bar-center">
         <span className="title-app-name">产品数据库</span>
         <span className="title-divider">/</span>

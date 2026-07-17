@@ -205,31 +205,11 @@ input, textarea, select { user-select: text; }
   user-select: none;
   flex-shrink: 0;
 }
-.title-bar-traffic {
-  display: flex;
-  gap: 8px;
-  -webkit-app-region: no-drag;
-  width: 56px;
-}
-.traffic-light {
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+/* 原生 macOS 交通灯按钮占位，不再自定义绘制 */
+.title-bar-traffic-placeholder {
+  width: 72px;
   flex-shrink: 0;
-  position: relative;
-}
-.traffic-close { background: #ff5f57; }
-.traffic-minimize { background: #febc2e; }
-.traffic-maximize { background: #28c840; }
-.traffic-light:hover::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.12);
+  -webkit-app-region: no-drag;
 }
 .title-bar-center {
   flex: 1;
