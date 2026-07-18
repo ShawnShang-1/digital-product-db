@@ -268,27 +268,48 @@ export function searchAll(keyword: string): Record<string, ProductRecord[]> {
   return out;
 }
 
-/** 插入示例数据（仅当表为空时，绝不覆盖已有数据） */
+/** 插入示例数据（仅当表为空，或版本更新时幂等追加新条目） */
 export function seedIfEmpty(): void {
   // 确保 meta 表存在
   db.exec('CREATE TABLE IF NOT EXISTS _meta (key TEXT PRIMARY KEY, value TEXT)');
-  const currentVersion = '3'; // 每次更新 seed 数据后递增此版本号
+  const row = db.prepare("SELECT value FROM _meta WHERE key = 'data_version'").get() as { value: string } | undefined;
+  const currentVersion = '4'; // 每次更新 seed 数据后递增此版本号
+  const versionChanged = !row || row.value !== currentVersion;
 
   for (const s of schemas) {
-    const c = countRecords(s.id);
-    if (c > 0) continue; // 已有数据，绝不覆盖
     const seed = seedRegistry[s.id];
-    if (seed && seed.length) {
+    if (!seed || !seed.length) continue;
+    const c = countRecords(s.id);
+
+    if (c === 0) {
+      // 表为空：全量插入
       const insert = db.prepare(
         `INSERT INTO "${s.tableName}" (${s.fields.map((f) => `"${f.key}"`).join(', ')}) VALUES (${s.fields.map(() => '?').join(', ')})`
       );
       const tx = db.transaction((rows: Record<string, any>[]) => {
-        for (const row of rows) {
-          insert.run(...s.fields.map((f) => row[f.key] ?? null));
+        for (const r of rows) {
+          insert.run(...s.fields.map((f) => r[f.key] ?? null));
         }
       });
       tx(seed);
       console.log(`[db] seeded ${s.id}: ${seed.length} rows`);
+    } else if (versionChanged) {
+      // 版本变化但表已有数据：仅追加不存在的条目（按 model 字段去重）
+      const existing = db.prepare(`SELECT "${s.nameField}" FROM "${s.tableName}"`).all() as Record<string, any>[];
+      const existingNames = new Set(existing.map((r) => r[s.nameField]));
+      const newRows = seed.filter((r) => !existingNames.has(r[s.nameField]));
+      if (newRows.length > 0) {
+        const insert = db.prepare(
+          `INSERT INTO "${s.tableName}" (${s.fields.map((f) => `"${f.key}"`).join(', ')}) VALUES (${s.fields.map(() => '?').join(', ')})`
+        );
+        const tx = db.transaction((rows: Record<string, any>[]) => {
+          for (const r of rows) {
+            insert.run(...s.fields.map((f) => r[f.key] ?? null));
+          }
+        });
+        tx(newRows);
+        console.log(`[db] upserted ${s.id}: ${newRows.length} new rows`);
+      }
     }
   }
 
